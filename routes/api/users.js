@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const JWT_SECRET = process.env.JWT_SECRET;
-console.log(process.env);
+// console.log(process.env);
 // Load User model
 // const User = require('../../models/User');
 const db = require('../../models');
@@ -18,7 +18,7 @@ router.get('/test', (req, res) => {
 
 // POST api/users/register (Public)
 router.post('/register', (req, res) => {
-  
+  console.log('string')
   // Find user by email
   db.User.findOne({ email: req.body.email })
   .then(user => {
@@ -32,6 +32,7 @@ router.post('/register', (req, res) => {
         email: req.body.email,
         password: req.body.password
       });
+      console.log(newUser);
 
       // Salt and hash the password, then save the user
       bcrypt.genSalt(10, (error, salt) => {
