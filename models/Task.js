@@ -11,7 +11,9 @@ const TaskSchema = new Schema({
   },
   dateDue: {
     type: Date,
-  }
+  },
+  user: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  projects: [{ type: Schema.Types.ObjectId, ref: 'Project' }],
 });
 
 module.exports = Task = mongoose.model('Task', TaskSchema);

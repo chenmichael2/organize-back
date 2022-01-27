@@ -19,7 +19,7 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now()
   },
-  projects: [{ type: Schema.Types.ObjectId, ref: 'Projects'}],
+  project: [{ type: Schema.Types.ObjectId, ref: 'Project'}],
   
 });
 
