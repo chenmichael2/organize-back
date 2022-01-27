@@ -22,6 +22,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/users', users);
+app.use('/task', require('./controllers/task'));
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
