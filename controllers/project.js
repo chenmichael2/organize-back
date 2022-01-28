@@ -15,7 +15,11 @@ router.post('/new', async (req, res) => {
 })
 
 router.post('/:id', async (req, res) => {
-    console.log(req.params.id);
-    return res.json({parameters: req.params});
+    // console.log(req.params.id);
+    let project = await db.Project.find({
+        user: req.params.id
+    })
+    return res.json({data: project});
 })
+
 module.exports = router;
