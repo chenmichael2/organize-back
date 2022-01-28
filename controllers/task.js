@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 require('dotenv').config();
-const { Task } = require('../models');
-const mongoose = require('mongoose');
+const db = require('../models');
 
 router.post('/', async (req, res) => {
     console.log('backend connected');
@@ -10,7 +9,7 @@ router.post('/', async (req, res) => {
     // let findUser = await User.find({
     // })
     // console.log('find user', findUser);
-    let newTask = await Task.insertMany({
+    let newTask = await db.Task.insertMany({
         user: req.body.user.id,
         task: req.body.task,
         dateDue: req.body.date,
@@ -18,6 +17,14 @@ router.post('/', async (req, res) => {
     })
     console.log('new task', newTask)
     return res.json({data: req.body})
+})
+
+router.post('/todoList/:id', async (req, res) => {
+    const id = req.params.id;
+    let tasks = await Task.find({
+        user: id,
+    })
+    return res.json({ tasks })
 })
 
 module.exports = router;
