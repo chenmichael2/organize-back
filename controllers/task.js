@@ -10,7 +10,8 @@ router.post('/', async (req, res) => {
     // })
     // console.log('find user', findUser);
     let newTask = await db.Task.insertMany({
-        user: req.body.user.id,
+        user: req.body.user,
+        projects: req.body.projects,
         task: req.body.task,
         dateDue: req.body.date,
         checked: false,
@@ -27,7 +28,7 @@ router.post('/todoList/:id', async (req, res) => {
     return res.json({ tasks })
 })
 
-router.post('/projectTasks/:id', async (req, res) => {
+router.get('/projectTasks/:id', async (req, res) => {
     const id = req.params.id;
     let projectTasks = await Task.find({
         projects: id,
