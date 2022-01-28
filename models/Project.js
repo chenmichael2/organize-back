@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 // Project Schema
 const ProjectSchema = new Schema({
   user: [{ type: Schema.Types.ObjectId, ref: 'User'}],
-  projectName: String,
+  projectName: {type: String,},
   date: {
     type: Date,
     default: Date.now()

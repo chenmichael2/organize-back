@@ -27,4 +27,12 @@ router.post('/todoList/:id', async (req, res) => {
     return res.json({ tasks })
 })
 
+router.post('/projectTasks/:id', async (req, res) => {
+    const id = req.params.id;
+    let projectTasks = await Task.find({
+        projects: id,
+    })
+    return res.json({projectTasks})
+})
+
 module.exports = router;
