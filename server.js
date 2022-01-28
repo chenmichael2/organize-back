@@ -23,6 +23,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/users', users);
 app.use('/task', require('./controllers/task'));
+app.use('/project', require('./controllers/project'));
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
