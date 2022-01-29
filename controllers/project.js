@@ -22,4 +22,13 @@ router.post('/:id', async (req, res) => {
     return res.json({data: project});
 })
 
+
+router.post('/delete/:id', async (req, res) => {
+    // console.log(req.params.id);
+    let deleteProject = await Project.deleteOne({
+        _id: req.params.id
+    })
+    return res.json({data: deleteProject});
+})
+
 module.exports = router;
