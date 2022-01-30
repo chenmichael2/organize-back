@@ -28,6 +28,14 @@ router.post('/currentTask/:id', async (req, res) => {
     return res.json({ task })
 })
 
+router.post('/deletetask/:id', async (req, res) => {
+    const id = req.params.id;
+    let deleteTask = await Task.deleteOne({
+        _id: id,
+    })
+    return res.json({deleteTask})
+})
+
 router.post('/todoList/:id', async (req, res) => {
     const id = req.params.id;
     let tasks = await Task.find({
