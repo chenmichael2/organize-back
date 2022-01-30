@@ -36,4 +36,27 @@ router.get('/projectTasks/:id', async (req, res) => {
     return res.json({projectTasks})
 })
 
+router.post('/taskchangetrue/:id', async (req, res) => {
+    const id = req.params.id;
+    let taskTrue = await Task.updateOne({
+        _id: id,
+    }, {
+        checked: true,
+    })
+    // console.log(taskTrue)
+    return res.json({taskTrue})
+})
+
+router.post('/taskchangefalse/:id', async (req, res) => {
+    const id = req.params.id;
+    let taskFalse = await Task.updateOne({
+        _id: id,
+    }, {
+        checked: false,
+    })
+    // console.log(taskFalse)
+    return res.json({taskFalse})
+})
+
+
 module.exports = router;
