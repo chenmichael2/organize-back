@@ -20,6 +20,14 @@ router.post('/', async (req, res) => {
     return res.json({data: req.body})
 })
 
+router.post('/currentTask/:id', async (req, res) => {
+    const id = req.params.id;
+    let task = await Task.find({
+        _id: id,
+    })
+    return res.json({ task })
+})
+
 router.post('/todoList/:id', async (req, res) => {
     const id = req.params.id;
     let tasks = await Task.find({
@@ -56,6 +64,18 @@ router.post('/taskchangefalse/:id', async (req, res) => {
     })
     // console.log(taskFalse)
     return res.json({taskFalse})
+})
+
+router.post('/update/:id', async (req, res) => {
+    const id = req.params.id;
+    let updated = await Task.updateOne({
+        _id: id,
+    }, {
+        task: req.body.task,
+        dateDue: req.body.date,
+    })
+
+    return res.json({updated})
 })
 
 
